@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/ai-driven-farm/static/css/main.e6c13ad2.css",
+    "main.js": "/ai-driven-farm/static/js/main.79f0d262.js",
+    "static/js/453.9b388ba4.chunk.js": "/ai-driven-farm/static/js/453.9b388ba4.chunk.js",
+    "index.html": "/ai-driven-farm/index.html",
+    "main.e6c13ad2.css.map": "/ai-driven-farm/static/css/main.e6c13ad2.css.map",
+    "main.79f0d262.js.map": "/ai-driven-farm/static/js/main.79f0d262.js.map",
+    "453.9b388ba4.chunk.js.map": "/ai-driven-farm/static/js/453.9b388ba4.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.79f0d262.js"
+  ]
+}
