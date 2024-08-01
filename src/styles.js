@@ -5,7 +5,7 @@ export const Container = styled.div`
     background: #f4f4f9;
     color: #333;
     padding: 20px;
-    max-width: 1200px;
+    max-width: 100%;
     margin: 0 auto;
 
     @media (max-width: 768px) {
@@ -91,3 +91,27 @@ export const LocationInfo = styled.div`
         margin: 5px 0;
     }
 `;
+
+export const labelStyle = {
+    fontSize: '16px',
+    fontWeight: 'bold',
+    marginBottom: '5px',
+    color: '#333',
+};
+
+export const selectStyle = {
+    padding: '8px 12px',
+    fontSize: '17px',
+    borderRadius: '4px',
+    border: '1px solid #ccc',
+    backgroundColor: '#f9f9f9',
+    color: '#333',
+    cursor: 'pointer',
+    outline: 'none',
+    transition: 'border-color 0.3s ease',
+    marginLeft: '10px'
+};
+
+export const hoverEffect = {
+    borderColor: '#007bff',
+};
