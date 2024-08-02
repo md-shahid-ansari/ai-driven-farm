@@ -19,7 +19,7 @@ const FarmData = () => {
                 setLocation({ lat: latitude, lon: longitude });
 
                 // Fetch weather data
-                axios.get(`http://aidrivenfarm.pythonanywhere.com/weather?lat=${latitude}&lon=${longitude}`)
+                axios.get(`https://aidrivenfarm.pythonanywhere.com/api/weather?lat=${latitude}&lon=${longitude}`)
                     .then(response => setWeatherData(response.data))
                     .catch(error => {
                         setError('Error fetching weather data');
@@ -40,7 +40,7 @@ const FarmData = () => {
     };
 
     const fetchRecommendations = (soil_type) => {
-        axios.get(`http://aidrivenfarm.pythonanywhere.com/recommended_crops?temp=${weatherData.main?.temp}&humidity=${weatherData.main?.humidity}&soil_type=${soil_type}`)
+        axios.get(`https://aidrivenfarm.pythonanywhere.com/api/recommended_crops?temp=${weatherData.main?.temp}&humidity=${weatherData.main?.humidity}&soil_type=${soil_type}`)
             .then(response => {
                 setRecommended_crops(response.data);
                 // console.log(response.data);
@@ -49,7 +49,7 @@ const FarmData = () => {
     };
 
     const fetchSeasonalCrops = (soil_type) => {
-        axios.get(`http://aidrivenfarm.pythonanywhere.com/seasonal_crops?lat=${location.lat}&lon=${location.lon}&soil_type=${soil_type}`)
+        axios.get(`https://aidrivenfarm.pythonanywhere.com/api/seasonal_crops?lat=${location.lat}&lon=${location.lon}&soil_type=${soil_type}`)
             .then(response => {
                 setSeasonal_crops(response.data);
                 // console.log(response.data);
