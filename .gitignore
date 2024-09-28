@@ -1,23 +1,26 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# Node modules
+node_modules/
 
-# dependencies
-/node_modules
-/.pnp
-.pnp.js
+__pycache__/
 
-# testing
-/coverage
+#custom folder
+.old
 
-# production
-/build
+# Logs
+*.log
 
-# misc
-.DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+# Environment variables
+.env
 
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# Build output
+dist/
+build/
+
+# Temporary files
+*.tmp
+*.swp
+*.swo
+
+# Package lock
+package-lock.json
+yarn.lock

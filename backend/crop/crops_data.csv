@@ -1,0 +1,111 @@
+Crop Name,Crop Type,Water Requirements,Watering Schedule,Temperature,Soil Type,Humidity,Sunshine Hours,Wind Speed,Soil pH Level,Planting Dates,Harvesting Dates,Irrigation Schedules,Fertilizer Schedules
+Rice,Staple,500-800,Daily,25-30,Loamy,70-80,6-8,15-25,5.5-7.0,May-June,September-October,Weekly,Every 4-6 weeks
+Wheat,Staple,300-500,Weekly,15-20,Loamy,50-60,6-8,10-20,6.0-7.0,October-November,May-June,Every 2-3 weeks,Every 6-8 weeks
+Maize (Corn),Cereal,500-700,Weekly,20-30,Loamy,60-70,8-10,10-20,5.8-7.0,April-May,August-September,Every 1-2 weeks,Every 4-6 weeks
+Barley,Cereal,400-600,Weekly,15-25,Loamy,50-60,6-8,10-15,6.0-7.0,October-November,June-July,Every 2-3 weeks,Every 6-8 weeks
+Sorghum (Jowar),Cereal,300-500,Weekly,25-35,Loamy,50-60,8-10,15-20,6.0-7.5,June-July,November-December,Every 1-2 weeks,Every 4-6 weeks
+Pearl Millet (Bajra),Cereal,200-400,Weekly,25-35,Loamy,50-60,8-10,15-20,6.0-7.0,June-July,November-December,Every 1-2 weeks,Every 4-6 weeks
+Finger Millet (Ragi),Cereal,300-500,Weekly,20-30,Loamy,60-70,6-8,10-15,5.8-6.5,July-August,January-February,Every 1-2 weeks,Every 4-6 weeks
+Oats,Cereal,300-500,Weekly,15-20,Loamy,50-60,6-8,10-15,6.0-7.0,September-October,May-June,Every 2-3 weeks,Every 6-8 weeks
+Rye,Cereal,400-600,Weekly,10-15,Loamy,60-70,6-8,15-20,6.0-7.0,August-September,May-June,Every 2-3 weeks,Every 6-8 weeks
+Chickpeas (Chana),Legume,200-400,Weekly,20-30,Loamy,50-60,6-8,10-15,6.0-7.0,October-November,March-April,Every 2-3 weeks,Every 6-8 weeks
+Lentils (Masoor),Legume,200-300,Weekly,20-25,Loamy,50-60,6-8,10-15,6.0-7.0,October-November,March-April,Every 2-3 weeks,Every 6-8 weeks
+Pigeon Pea (Toor Dal),Legume,300-500,Weekly,25-30,Loamy,60-70,6-8,10-15,6.0-7.0,June-July,March-April,Every 1-2 weeks,Every 4-6 weeks
+Green Gram (Moong),Legume,200-400,Weekly,25-30,Loamy,60-70,8-10,10-15,6.0-7.0,June-July,October-November,Every 1-2 weeks,Every 4-6 weeks
+Black Gram (Urad),Legume,200-400,Weekly,25-30,Loamy,60-70,6-8,10-15,6.0-7.0,June-July,October-November,Every 1-2 weeks,Every 4-6 weeks
+Kidney Beans (Rajma),Legume,300-500,Weekly,20-30,Loamy,60-70,6-8,10-15,6.0-7.0,May-June,September-October,Every 1-2 weeks,Every 4-6 weeks
+Bengal Gram (Chana Dal),Legume,200-400,Weekly,20-30,Loamy,50-60,6-8,10-15,6.0-7.0,October-November,March-April,Every 2-3 weeks,Every 6-8 weeks
+Groundnut (Peanuts),Legume,400-600,Weekly,25-35,Loamy,50-60,6-8,10-15,6.0-7.0,May-June,September-October,Every 1-2 weeks,Every 4-6 weeks
+Soybean,Legume,300-500,Weekly,20-30,Loamy,60-70,8-10,10-15,6.0-7.0,May-June,October-November,Every 1-2 weeks,Every 4-6 weeks
+Sunflower,Oilseed,400-600,Weekly,20-30,Loamy,60-70,8-10,15-20,6.0-7.0,April-May,August-September,Every 1-2 weeks,Every 4-6 weeks
+Sesame,Oilseed,200-400,Weekly,25-35,Loamy,50-60,6-8,10-15,6.0-7.0,June-July,November-December,Every 1-2 weeks,Every 4-6 weeks
+Mustard,Oilseed,300-500,Weekly,15-25,Loamy,60-70,6-8,10-15,6.0-7.0,October-November,March-April,Every 2-3 weeks,Every 6-8 weeks
+Safflower,Oilseed,200-400,Weekly,20-30,Loamy,50-60,8-10,10-15,6.0-7.0,April-May,September-October,Every 1-2 weeks,Every 4-6 weeks
+Castor Oil Plant,Oilseed,300-500,Weekly,25-35,Loamy,50-60,6-8,15-20,6.0-7.0,May-June,October-November,Every 1-2 weeks,Every 4-6 weeks
+Mango,Fruit,200-500,Weekly,25-35,Loamy,50-60,6-8,10-15,6.0-7.0,February-March,May-June,Monthly,Every 4-6 weeks
+Banana,Fruit,400-800,Weekly,25-30,Loamy,70-80,6-8,10-15,5.5-6.5,March-April,December-January,Every 1-2 weeks,Every 3-4 weeks
+Pineapple,Fruit,200-400,Weekly,20-30,Loamy,60-70,6-8,10-15,4.5-6.5,March-April,October-November,Every 1-2 weeks,Every 6-8 weeks
+Guava,Fruit,300-500,Weekly,20-30,Loamy,60-70,6-8,10-15,5.5-6.5,March-April,August-September,Every 1-2 weeks,Every 4-6 weeks
+Papaya,Fruit,400-600,Weekly,25-35,Loamy,70-80,6-8,10-15,5.5-6.5,February-March,September-October,Every 1-2 weeks,Every 4-6 weeks
+Apple,Fruit,400-700,Weekly,15-25,Loamy,50-60,6-8,10-15,6.0-7.0,September-October,August-September,Monthly,Every 4-6 weeks
+Orange,Fruit,400-700,Weekly,20-30,Loamy,60-70,6-8,10-15,5.5-6.5,February-March,October-November,Every 1-2 weeks,Every 4-6 weeks
+Pomegranate,Fruit,300-500,Weekly,20-30,Loamy,50-60,6-8,10-15,5.5-6.5,February-March,October-November,Every 2-3 weeks,Every 6-8 weeks
+Lemon,Fruit,300-500,Weekly,20-30,Loamy,60-70,6-8,10-15,5.5-6.5,February-March,August-September,Every 1-2 weeks,Every 4-6 weeks
+Grapes,Fruit,400-700,Weekly,20-30,Loamy,60-70,6-8,10-15,6.0-7.0,March-April,August-September,Every 1-2 weeks,Every 4-6 weeks
+Lychee,Fruit,400-600,Weekly,25-30,Loamy,70-80,6-8,10-15,5.5-6.5,March-April,July-August,Every 1-2 weeks,Every 4-6 weeks
+Dragon Fruit,Fruit,300-500,Weekly,20-30,Loamy,60-70,8-10,10-15,6.0-7.0,March-April,October-November,Every 1-2 weeks,Every 4-6 weeks
+Custard Apple (Sitaphal),Fruit,300-500,Weekly,25-30,Loamy,60-70,6-8,10-15,5.5-6.5,March-April,August-September,Every 1-2 weeks,Every 4-6 weeks
+Tomato,Vegetable,300-500,Weekly,20-30,Loamy,60-70,6-8,10-15,6.0-7.0,March-April,July-August,Every 1-2 weeks,Every 4-6 weeks
+Potato,Vegetable,400-600,Weekly,15-20,Loamy,60-70,6-8,10-15,5.5-6.5,September-October,March-April,Every 1-2 weeks,Every 4-6 weeks
+Onion,Vegetable,300-500,Weekly,15-25,Loamy,50-60,6-8,10-15,6.0-7.0,October-November,May-June,Every 1-2 weeks,Every 6-8 weeks
+Carrot,Vegetable,300-500,Weekly,15-20,Loamy,50-60,6-8,10-15,6.0-7.0,September-October,February-March,Every 1-2 weeks,Every 6-8 weeks
+Cabbage,Vegetable,300-500,Weekly,15-25,Loamy,60-70,6-8,10-15,6.0-7.0,August-September,January-February,Every 1-2 weeks,Every 4-6 weeks
+Cauliflower,Vegetable,300-500,Weekly,15-25,Loamy,60-70,6-8,10-15,6.0-7.0,August-September,January-February,Every 1-2 weeks,Every 4-6 weeks
+Brinjal (Eggplant),Vegetable,400-600,Weekly,20-30,Loamy,60-70,6-8,10-15,6.0-7.0,February-March,July-August,Every 1-2 weeks,Every 4-6 weeks
+Spinach,Vegetable,200-400,Weekly,15-25,Loamy,60-70,6-8,10-15,6.0-7.0,September-October,March-April,Every 1-2 weeks,Every 4-6 weeks
+Green Beans,Vegetable,300-500,Weekly,20-30,Loamy,60-70,6-8,10-15,6.0-7.0,March-April,July-August,Every 1-2 weeks,Every 4-6 weeks
+Pumpkin,Vegetable,400-600,Weekly,20-30,Loamy,60-70,6-8,10-15,6.0-7.0,April-May,September-October,Every 1-2 weeks,Every 4-6 weeks
+Beetroot,Vegetable,300-500,Weekly,15-25,Loamy,60-70,6-8,10-15,6.0-7.0,August-September,February-March,Every 1-2 weeks,Every 4-6 weeks
+Radish,Vegetable,200-400,Weekly,15-25,Loamy,60-70,6-8,10-15,6.0-7.0,September-October,February-March,Every 1-2 weeks,Every 4-6 weeks
+Okra (Ladyfinger),Vegetable,300-500,Weekly,20-30,Loamy,60-70,6-8,10-15,6.0-7.0,April-May,August-September,Every 1-2 weeks,Every 4-6 weeks
+Chili Pepper,Vegetable,300-500,Weekly,20-30,Loamy,60-70,6-8,10-15,6.0-7.0,February-March,July-August,Every 1-2 weeks,Every 4-6 weeks
+Turmeric,Spice,400-600,Weekly,25-35,Loamy,70-80,6-8,10-15,5.5-6.5,March-April,October-November,Every 1-2 weeks,Every 6-8 weeks
+Black Pepper,Spice,500-700,Weekly,25-35,Loamy,70-80,6-8,10-15,5.5-6.5,March-April,October-November,Every 1-2 weeks,Every 6-8 weeks
+Cardamom,Spice,400-600,Weekly,20-30,Loamy,70-80,6-8,10-15,5.5-6.5,March-April,October-November,Every 1-2 weeks,Every 6-8 weeks
+Cinnamon,Spice,500-700,Weekly,25-35,Loamy,70-80,6-8,10-15,5.5-6.5,March-April,October-November,Every 1-2 weeks,Every 6-8 weeks
+Clove,Spice,500-700,Weekly,25-35,Loamy,70-80,6-8,10-15,5.5-6.5,March-April,October-November,Every 1-2 weeks,Every 6-8 weeks
+Coriander,Spice,200-400,Weekly,20-30,Loamy,60-70,6-8,10-15,6.0-7.0,September-October,March-April,Every 1-2 weeks,Every 4-6 weeks
+Chili,Spice,300-500,Weekly,20-30,Loamy,60-70,6-8,10-15,6.0-7.0,February-March,July-August,Every 1-2 weeks,Every 4-6 weeks
+Nutmeg,Spice,500-700,Weekly,25-35,Loamy,70-80,6-8,10-15,5.5-6.5,March-April,October-November,Every 1-2 weeks,Every 6-8 weeks
+Fennel Seeds,Spice,300-500,Weekly,20-30,Loamy,60-70,6-8,10-15,6.0-7.0,August-September,January-February,Every 1-2 weeks,Every 4-6 weeks
+Aniseed,Spice,300-500,Weekly,20-30,Loamy,60-70,6-8,10-15,6.0-7.0,August-September,January-February,Every 1-2 weeks,Every 4-6 weeks
+Cotton,Fiber,500-800,Weekly,25-35,Loamy,60-70,6-8,10-15,6.0-7.0,April-May,October-November,Every 1-2 weeks,Every 4-6 weeks
+Sugarcane,Industrial,800-1200,Weekly,25-35,Loamy,70-80,6-8,10-15,6.0-7.0,January-February,December-January,Every 1-2 weeks,Every 3-4 weeks
+Tea,Industrial,500-800,Weekly,20-30,Loamy,70-80,6-8,10-15,5.5-6.5,March-April,October-November,Every 1-2 weeks,Every 4-6 weeks
+Coffee,Industrial,500-800,Weekly,20-30,Loamy,70-80,6-8,10-15,5.5-6.5,March-April,October-November,Every 1-2 weeks,Every 4-6 weeks
+Rubber,Industrial,800-1200,Weekly,25-35,Loamy,70-80,6-8,10-15,5.5-6.5,March-April,October-November,Every 1-2 weeks,Every 6-8 weeks
+Tobacco,Industrial,400-600,Weekly,25-35,Loamy,50-60,6-8,10-15,5.5-6.5,April-May,September-October,Every 1-2 weeks,Every 4-6 weeks
+Oil Palm,Industrial,800-1200,Weekly,25-35,Loamy,70-80,6-8,10-15,5.5-6.5,March-April,October-November,Every 1-2 weeks,Every 6-8 weeks
+Tulsi (Holy Basil),Herb,200-400,Weekly,20-30,Loamy,60-70,6-8,10-15,6.0-7.0,April-May,August-September,Every 1-2 weeks,Every 4-6 weeks
+Neem,Tree,300-500,Weekly,25-35,Loamy,50-60,6-8,10-15,6.0-7.0,March-April,October-November,Every 2-3 weeks,Every 6-8 weeks
+Aloe Vera,Herb,200-300,Monthly,20-30,Loamy,50-60,6-8,5-10,6.0-7.0,March-April,August-September,Every 1-2 weeks,Every 6-8 weeks
+Ashwagandha,Herb,300-500,Weekly,20-30,Loamy,50-60,6-8,10-15,6.0-7.0,April-May,October-November,Every 1-2 weeks,Every 4-6 weeks
+Ginger,Spice,400-600,Weekly,25-30,Loamy,70-80,6-8,10-15,5.5-6.5,March-April,October-November,Every 1-2 weeks,Every 6-8 weeks
+Saffron,Spice,200-400,Weekly,15-25,Loamy,50-60,6-8,10-15,6.0-7.0,August-September,December-January,Every 1-2 weeks,Every 4-6 weeks
+Coconut,Tree,500-1000,Weekly,25-35,Loamy,70-80,6-8,10-15,6.0-7.0,March-April,October-November,Every 2-3 weeks,Every 6-8 weeks
+Areca Nut (Betel Nut),Tree,600-800,Weekly,25-35,Loamy,70-80,6-8,10-15,5.5-6.5,March-April,October-November,Every 2-3 weeks,Every 6-8 weeks
+Cashew,Nut,400-600,Weekly,25-35,Loamy,60-70,6-8,10-15,6.0-7.0,April-May,October-November,Every 1-2 weeks,Every 6-8 weeks
+Jackfruit,Fruit,500-800,Weekly,25-35,Loamy,60-70,6-8,10-15,5.5-6.5,March-April,October-November,Every 2-3 weeks,Every 6-8 weeks
+Moringa (Drumstick),Tree,300-500,Weekly,20-30,Loamy,60-70,6-8,10-15,6.0-7.0,March-April,October-November,Every 1-2 weeks,Every 4-6 weeks
+Cowpea (Lobia),Legume,300-500,Weekly,20-30,Loamy,60-70,6-8,10-15,6.0-7.0,April-May,August-September,Every 1-2 weeks,Every 4-6 weeks
+Bitter Gourd,Vegetable,300-500,Weekly,25-30,Loamy,60-70,6-8,10-15,6.0-7.0,March-April,August-September,Every 1-2 weeks,Every 4-6 weeks
+Peas (Green Peas),Vegetable,300-500,Weekly,15-25,Loamy,60-70,6-8,10-15,6.0-7.0,October-November,March-April,Every 1-2 weeks,Every 4-6 weeks
+Pulses like Lentils,Pulse,300-500,Weekly,15-25,Loamy,50-60,6-8,10-15,6.0-7.0,October-November,March-April,Every 1-2 weeks,Every 4-6 weeks
+Jute,Fiber,800-1200,Weekly,25-35,Loamy,70-80,6-8,10-15,6.0-7.0,May-June,September-October,Every 1-2 weeks,Every 4-6 weeks
+Hemp,Fiber,600-800,Weekly,25-35,Loamy,60-70,6-8,10-15,6.0-7.0,April-May,October-November,Every 1-2 weeks,Every 4-6 weeks
+Quinoa,Grain,400-600,Weekly,15-25,Loamy,50-60,6-8,10-15,6.0-7.0,March-April,July-August,Every 1-2 weeks,Every 4-6 weeks
+Rose,Flower,300-500,Weekly,15-25,Loamy,60-70,6-8,10-15,6.0-7.0,September-October,April-May,Every 1-2 weeks,Every 4-6 weeks
+Marigold,Flower,200-400,Weekly,20-30,Loamy,60-70,6-8,10-15,6.0-7.0,August-September,January-February,Every 1-2 weeks,Every 4-6 weeks
+Jasmine,Flower,200-400,Weekly,20-30,Loamy,60-70,6-8,10-15,6.0-7.0,March-April,October-November,Every 1-2 weeks,Every 4-6 weeks
+Lotus,Flower,400-600,Weekly,25-35,Loamy,70-80,6-8,10-15,5.5-6.5,April-May,September-October,Every 2-3 weeks,Every 6-8 weeks
+Hibiscus,Flower,300-500,Weekly,20-30,Loamy,60-70,6-8,10-15,6.0-7.0,March-April,September-October,Every 1-2 weeks,Every 4-6 weeks
+Chrysanthemum,Flower,200-400,Weekly,15-25,Loamy,60-70,6-8,10-15,6.0-7.0,September-October,March-April,Every 1-2 weeks,Every 4-6 weeks
+Bougainvillea,Flower,300-500,Weekly,20-30,Loamy,60-70,6-8,10-15,6.0-7.0,March-April,October-November,Every 1-2 weeks,Every 4-6 weeks
+Tulip,Flower,200-400,Weekly,10-15,Loamy,60-70,6-8,10-15,6.0-7.0,October-November,April-May,Every 1-2 weeks,Every 4-6 weeks
+Orchid,Flower,200-300,Weekly,20-30,Loamy,60-70,6-8,5-10,5.5-6.5,February-March,September-October,Every 1-2 weeks,Every 4-6 weeks
+Lily,Flower,300-500,Weekly,15-25,Loamy,60-70,6-8,10-15,6.0-7.0,September-October,March-April,Every 1-2 weeks,Every 4-6 weeks
+Zinnia,Flower,200-400,Weekly,20-30,Loamy,60-70,6-8,10-15,6.0-7.0,April-May,September-October,Every 1-2 weeks,Every 4-6 weeks
+Daisy,Flower,200-400,Weekly,15-25,Loamy,60-70,6-8,10-15,6.0-7.0,March-April,September-October,Every 1-2 weeks,Every 4-6 weeks
+Geranium,Flower,200-400,Weekly,15-25,Loamy,60-70,6-8,10-15,6.0-7.0,April-May,September-October,Every 1-2 weeks,Every 4-6 weeks
+Aster,Flower,200-400,Weekly,15-25,Loamy,60-70,6-8,10-15,6.0-7.0,August-September,March-April,Every 1-2 weeks,Every 4-6 weeks
+Tuberose (Rajnigandha),Flower,300-500,Weekly,20-30,Loamy,60-70,6-8,10-15,6.0-7.0,March-April,September-October,Every 1-2 weeks,Every 4-6 weeks
+Plumeria (Frangipani),Flower,400-600,Weekly,25-35,Loamy,60-70,6-8,10-15,6.0-7.0,March-April,October-November,Every 2-3 weeks,Every 6-8 weeks
+Canna Lily,Flower,300-500,Weekly,20-30,Loamy,60-70,6-8,10-15,6.0-7.0,March-April,September-October,Every 1-2 weeks,Every 4-6 weeks
+Ixora,Flower,300-500,Weekly,20-30,Loamy,60-70,6-8,10-15,6.0-7.0,March-April,September-October,Every 1-2 weeks,Every 4-6 weeks
+Nasturtium,Flower,200-400,Weekly,15-25,Loamy,60-70,6-8,10-15,6.0-7.0,April-May,September-October,Every 1-2 weeks,Every 4-6 weeks
+Indian Violet (Kalanchoe),Flower,200-300,Weekly,15-25,Loamy,60-70,6-8,10-15,6.0-7.0,March-April,September-October,Every 1-2 weeks,Every 4-6 weeks
+Maranta (Prayer Plant),Flower,200-300,Weekly,20-30,Loamy,60-70,6-8,10-15,6.0-7.0,March-April,September-October,Every 1-2 weeks,Every 4-6 weeks
+Calendula (Marigold),Flower,200-400,Weekly,15-25,Loamy,60-70,6-8,10-15,6.0-7.0,August-September,March-April,Every 1-2 weeks,Every 4-6 weeks
+Elderflower,Flower,300-500,Weekly,15-25,Loamy,60-70,6-8,10-15,6.0-7.0,April-May,September-October,Every 1-2 weeks,Every 4-6 weeks
+Chamomile,Flower,200-400,Weekly,15-25,Loamy,60-70,6-8,10-15,6.0-7.0,March-April,September-October,Every 1-2 weeks,Every 4-6 weeks
+Pulses Like 
