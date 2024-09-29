@@ -4,9 +4,9 @@ import joblib
 import os
 from dotenv import load_dotenv
 load_dotenv()
+from app import get_db
 
 URL = os.getenv('PATH_TO_CROP', '/')
-
 
 #for seasonal crop -------------------------------------------------------------------------------
 
@@ -122,3 +122,4 @@ def get_recommended_crops(temperature, humidity, soil_type_input):
 
     # Return the recommendations as a JSON response
     return recommendations 
+

@@ -2,6 +2,8 @@ import requests
 import os
 from dotenv import load_dotenv
 load_dotenv()
+from app import mongo
+db = mongo.db
 
 WEATHER_MAP_API_KEY = os.getenv('WEATHER_MAP_API_KEY', '')
 WEATHER_MAP_URL = os.getenv('WEATHER_MAP_URL', 'http://api.openweathermap.org/data/2.5')
