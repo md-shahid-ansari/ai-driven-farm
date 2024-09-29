@@ -6,20 +6,20 @@ from dotenv import load_dotenv
 load_dotenv()
 from app import get_db
 
-URL = os.getenv('PATH_TO_CROP', '/')
+URL1 = os.getenv('PATH_TO_CROP1', '/')
+URL2 = os.getenv('PATH_TO_CROP2', '/')
 
 #for seasonal crop -------------------------------------------------------------------------------
 
 # Load data from the CSV files and convert to dictionaries
-soil_type_df = pd.read_csv(f'{URL}soil_type.csv')
-crops_data_df = pd.read_csv(f'{URL}crops_data.csv')
+soil_type_df = pd.read_csv(f'{URL1}soil_type.csv')
+crops_data_df = pd.read_csv(f'{URL1}crops_data.csv')
 # Convert to dictionaries
 soil_type_dict = soil_type_df.to_dict(orient='records')
 crops_data_dict = crops_data_df.to_dict(orient='records')
 
 
 def get_seasonal_crops(soil_type_input):
-    
     # Step 1: Find crops that match the given soil type
     matched_crops = []
     for entry in soil_type_dict:
@@ -61,7 +61,7 @@ def get_seasonal_crops(soil_type_input):
 #for recommendations---------------------------------------------------
 
 # Load the trained model
-model = joblib.load(f'{URL}crop_recommendation_model.pkl')
+model = joblib.load(f'{URL2}crop_recommendation_model.pkl')
 
 # Function to recommend crops based on temperature and humidity
 def recommend_crops(temperature, humidity, top_n=3):
