@@ -1,16 +1,21 @@
 from flask import Blueprint, jsonify, request
 from weather.controllers import get_weather
 from crop.controllers import get_seasonal_crops, get_recommended_crops
+from app.controllers import get_zones, get_current_zone
 
 main_routes = Blueprint('main', __name__)
 
-# For weather information -------------------------------------------------------------------------------
+# For zone information -------------------------------------------------------------------------------
 
-@main_routes.route('/weather', methods=['GET'])
-def get_weather_info():
+@main_routes.route('/current_zone', methods=['GET'])
+def get_zones_curr():
     lat = request.args.get('lat')
     lon = request.args.get('lon')
-    return jsonify(get_weather(lat, lon))
+    return jsonify(get_current_zone(lat, lon))
+
+@main_routes.route('/zones', methods=['GET'])
+def get_zones_all():
+    return jsonify(get_zones())
 
 # For seasonal crops -------------------------------------------------------------------------------
 
