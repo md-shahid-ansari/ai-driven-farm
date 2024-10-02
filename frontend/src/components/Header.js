@@ -4,7 +4,7 @@ import { HeaderContainer, Title } from '../styles';
 const Header = () => {
     return (
         <HeaderContainer>
-            <Title>Farm Dashboard</Title>
+            <Title>Farm.ai</Title>
         </HeaderContainer>
     );
 };

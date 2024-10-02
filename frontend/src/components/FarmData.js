@@ -65,6 +65,29 @@ const FarmData = () => {
         setCurrentZone(event.target.value);
     };
 
+    useEffect(() => {
+        const fetchRecommendations = (soil_type) => {
+            axios.get(`${URL}/recommended_crops?soil_type=${soil_type}`)
+                .then(response => {
+                    setRecommended_crops(response.data);
+                    // console.log(response.data);
+                })
+                .catch(error => console.error('Error fetching recommendation:', error));
+        };
+    
+        const fetchSeasonalCrops = (soil_type) => {
+            axios.get(`${URL}/seasonal_crops?soil_type=${soil_type}`)
+                .then(response => {
+                    setSeasonal_crops(response.data);
+                    // console.log(response.data);
+                })
+                .catch(error => console.error('Error fetching recommendation:', error));
+        };
+
+        fetchRecommendations("Clay");
+        fetchSeasonalCrops("Clay");
+    },[]);
+
     const fetchRecommendations = (soil_type) => {
         axios.get(`${URL}/recommended_crops?soil_type=${soil_type}`)
             .then(response => {
