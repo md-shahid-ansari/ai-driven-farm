@@ -11,7 +11,8 @@ main_routes = Blueprint('main', __name__)
 def get_zones_curr():
     lat = request.args.get('lat')
     lon = request.args.get('lon')
-    return jsonify(get_current_zone(lat, lon))
+    zone = get_current_zone(lat, lon)
+    return jsonify(zone)
 
 @main_routes.route('/zones', methods=['GET'])
 def get_zones_all():

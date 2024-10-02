@@ -35,6 +35,15 @@ const FarmData = () => {
                 .catch(error => console.error('Error fetching recommendation:', error));
         };
 
+        fetchZones();
+    },[]);
+
+    useEffect(() => {
+        const lat = location.lat;
+        const lon = location.lon;
+        if( lat == null || lon == null){
+            return;
+        }
         const fetchCurrentZone = () => {
             axios.get(`${URL}/current_zone?lat=${location.lat}&lon=${location.lon}`)
                 .then(response => {
@@ -44,9 +53,8 @@ const FarmData = () => {
                 .catch(error => console.error('Error fetching recommendation:', error));
         };
 
-        fetchZones();
         fetchCurrentZone();
-    });
+    },[location.lat, location.lon]);
 
     const handleSoilTypeChange = (event) => {
         setSoilType(event.target.value);
