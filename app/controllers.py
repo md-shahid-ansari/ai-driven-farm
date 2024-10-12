@@ -2,7 +2,6 @@ from app import get_db
 db = get_db()
 import requests
 import os
-from flask import jsonify
 from dotenv import load_dotenv
 load_dotenv()
 import pandas as pd
