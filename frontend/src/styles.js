@@ -99,6 +99,17 @@ export const labelStyle = {
     color: '#333',
 };
 
+export const divStyle = {
+    border: '1px solid #ccc', 
+    borderRadius: '10px',
+    padding: '20px', 
+    margin: '10px', 
+    width: '300px', 
+    boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
+    backgroundColor: '#f9f9f9',
+    transition: 'transform 0.05s',
+};
+
 export const selectStyle = {
     padding: '8px 12px',
     fontSize: '17px',
