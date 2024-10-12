@@ -1,5 +1,5 @@
 from flask import Flask
-from flask_pymongo import PyMongo, MongoClient
+from flask_pymongo import PyMongo
 import os
 from dotenv import load_dotenv
 
@@ -13,7 +13,8 @@ MONGO_URI = os.getenv('MONGO_URI', '')
 mongo = PyMongo()
 
 def create_app():
-    app = Flask(__name__)
+    app = Flask(__name__, static_folder='../frontend/build', template_folder='../frontend/build')
+
 
     # Set MongoDB URI
     app.config["MONGO_URI"] = MONGO_URI

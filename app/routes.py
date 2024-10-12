@@ -1,6 +1,11 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, send_from_directory
 from app.controllers import get_zones, get_current_zone, get_crops , get_crop_pattern, get_weather_forecast, match_pattern_n_save, get_soils
 from app.model.controllers import get_data, forecast_n_save, fine_tune
+import os
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 main_routes = Blueprint('main', __name__)
 

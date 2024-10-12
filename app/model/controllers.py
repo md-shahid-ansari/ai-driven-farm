@@ -4,6 +4,11 @@ from sklearn.preprocessing import MinMaxScaler
 from keras import models , layers, callbacks, optimizers, losses
 from datetime import datetime
 import math
+import os
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 from app import get_db
 db = get_db()
@@ -14,7 +19,7 @@ EarlyStopping, ModelCheckpoint = callbacks.EarlyStopping, callbacks.ModelCheckpo
 Adam = optimizers.Adam
 MeanSquaredError = losses.MeanSquaredError
 
-root = 'D:/Hacks/ai-driven-farm/backend/app/model'
+root = os.getenv('ROOT', '')
 
 scaler = MinMaxScaler()
 
@@ -171,7 +176,7 @@ def fine_tune(data):
     print("Dynamic Batch Size:", batch_size)
 
     # Load the trained model
-    model = load_model(root + '/best_model.keras')
+    model = load_model(root + '/app/model/best_model.keras')
 
 
     # Compile the model with a lower learning rate (e.g., 0.0005)
@@ -179,7 +184,7 @@ def fine_tune(data):
 
     # Set up callbacks for early stopping and model checkpointing
     early_stopping = EarlyStopping(monitor='val_loss', patience=10, restore_best_weights=True)
-    model_checkpoint = ModelCheckpoint(root + '/best_model1.keras', save_best_only=True)
+    model_checkpoint = ModelCheckpoint(root + '/app/model/best_model.keras', save_best_only=True)
 
     # Train the model and save the history
     model.fit(X_train, y_train, epochs=100, batch_size=batch_size, validation_data=(X_test, y_test), callbacks=[early_stopping, model_checkpoint])
@@ -206,7 +211,7 @@ def forecast_n_save(data, ZoneId = 6):
     last_sequence = scaled_df.values[-sequence_length:].reshape(1, sequence_length, len(features))  # Ensure correct shape
 
     # Load the trained model
-    model = load_model(root + '/best_model1.keras')
+    model = load_model(root + '/app/model/best_model.keras')
 
     # Predict future weather for the next 366 days
     future_prediction = model.predict(last_sequence)
