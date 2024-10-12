@@ -15,8 +15,9 @@ from datetime import timedelta
 def get_zones():
     try:
         # Fetch all documents from the collection
-        zones_cursor = db.weather_zones.find({}, {'Zone': 1})
-        zones = [zone['Zone'] for zone in zones_cursor]  # Extract only the 'Zone' field
+        zones_cursor = db.weather_zones.find({}, {'Zone': 1 , 'ZoneId' : 1})
+        # Create a list of dictionaries containing both 'Zone' and 'ZoneId'
+        zones = [{'ZoneId': zone['ZoneId'], 'Name': zone['Zone']} for zone in zones_cursor]
         return zones
     except Exception as e:
         print(f"An error occurred while fetching zones: {e}")
@@ -55,6 +56,28 @@ def get_current_zone(lat, lon):
         print(f"An error occurred while fetching the current zone: {e}")
         return None
 
+def get_soils():
+    try:
+        # Fetch all documents from the collection
+        soils_cursor = db.crops.find({}, {'Soil Type': 1})
+        soil_list = set()
+
+        # Extract and flatten the soil types
+        soils = [soil['Soil Type'] for soil in soils_cursor]  # Extract only the 'Soil Type' field
+        
+        for s in soils:
+            if isinstance(s, list):  # Check if s is a list
+                # Flatten and split the soil types if it's a list
+                for item in s:
+                    soil_list.update(item.split(', '))
+            elif isinstance(s, str):  # Check if s is a string
+                soil_list.add(s)  # Add the string directly to the set
+
+        return list(soil_list)  # Convert set back to list for return
+    except Exception as e:
+        print(f"An error occurred while fetching soils: {e}")
+        return []
+
 
 
 WEATHER_MAP_API_KEY = os.getenv('WEATHER_MAP_API_KEY', '')
@@ -66,8 +89,39 @@ def get_weather(lat, lon):
     return response.json()
 
 
-def get_crops(soil_type):
-    return jsonify(soil_type)
+def get_crops(zoneId):
+    
+    # Find all crops based on ZoneId
+    result = db.crops_predicted.find({"ZoneId": int(zoneId)})
+    crops = []
+    
+    for crop in result:
+        
+        # Get soil type using the crop name
+        soil_info = db.crops.find_one({"Crop Name": crop['Crop Name']})
+        
+        # Create a dictionary with all fields except '_id'
+        crop_data = {key: value for key, value in crop.items() if key != '_id'}
+        
+        # Add soil type information if available
+        if soil_info and "Soil Type" in soil_info:
+            soil = soil_info["Soil Type"]
+            # If soil type is a string, wrap it in a list as a single soil type
+            if isinstance(soil, str):
+                crop_data['Soil Type'] = [soil]
+            elif isinstance(soil, list):
+                # If the list contains only one element and it's a comma-separated string, split it
+                if len(soil) == 1 and isinstance(soil[0], str):
+                    crop_data['Soil Type'] = [s.strip() for s in soil[0].split(',')]
+                else:
+                    crop_data['Soil Type'] = soil  # Keep the list as is if it's already correct
+        
+        
+        # Append the crop data with soil type
+        crops.append(crop_data)
+
+    return crops
+
     
 
 def get_crop_pattern():

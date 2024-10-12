@@ -3,7 +3,7 @@ import {LocationInfo} from '../styles';
 
 const CropList = (props) => {
     // Group crops by type
-    const groupedCrops = props.recommended_crops.reduce((acc, crop) => {
+    const groupedCrops = props.crops.reduce((acc, crop) => {
         if (!acc[crop['Crop Type']]) {
             acc[crop['Crop Type']] = [];
         }

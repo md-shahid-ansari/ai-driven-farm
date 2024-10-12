@@ -1,8 +1,6 @@
 from flask import Blueprint, jsonify, request
-from app.controllers import get_zones, get_current_zone, get_crops , get_crop_pattern, get_weather_forecast, match_pattern_n_save
+from app.controllers import get_zones, get_current_zone, get_crops , get_crop_pattern, get_weather_forecast, match_pattern_n_save, get_soils
 from app.model.controllers import get_data, forecast_n_save, fine_tune
-from app import get_db
-import pandas as pd
 
 main_routes = Blueprint('main', __name__)
 
@@ -19,13 +17,18 @@ def get_zones_curr():
 def get_zones_all():
     return jsonify(get_zones())
 
-# For seasonal crops -------------------------------------------------------------------------------
+@main_routes.route('/soils', methods=['GET'])
+def get_soil_all():
+    return jsonify(get_soils())
+
+
+# For crops -------------------------------------------------------------------------------
 
 @main_routes.route('/crops', methods=['GET'])  # Corrected route definition
 def get_seasonal():
     # Retrieve the soil type from request parameters
-    soil_type_input = request.args.get('soil_type')
-    return jsonify(get_crops(soil_type_input))
+    zoneId = request.args.get('zone_id')
+    return jsonify(get_crops(zoneId))
 
 
 # @main_routes.route('/predict', methods=['GET'])
@@ -36,7 +39,7 @@ def get_weather_data_n_predict_n_save():
     return jsonify("Done")
 
 
-@main_routes.route('/test', methods=['GET'])
+# @main_routes.route('/match', methods=['GET'])
 def get_pattern_n_save():
     crops_dict = get_crop_pattern()
     weather_forecast = get_weather_forecast() 

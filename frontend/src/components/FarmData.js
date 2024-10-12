@@ -7,15 +7,17 @@ import CropList from './CropList';
 const URL = "http://localhost:5000";
 
 const FarmData = () => {
-    const [recommended_crops, setRecommended_crops] = useState([]);
-    const [seasonal_crops, setSeasonal_crops] = useState([]);
+    const [crops, setCrops] = useState([]);
     const [location, setLocation] = useState({ lat: null, lon: null });
-    const [soilType, setSoilType] = useState('');
+    const [soils, setSoils] = useState([]);
+    const [currentSoil, setCurrentSoil] = useState('');
     const [errorLoc, setErrorLoc] = useState('');
     const [zones, setZones] = useState([]);
     const [currentZone, setCurrentZone] = useState('');
+    const [loading , setLoading] = useState(false);
 
     useEffect(() => {
+        setLoading(true)
         navigator.geolocation.getCurrentPosition(
             (position) => {
                 const { latitude, longitude } = position.coords;
@@ -32,13 +34,24 @@ const FarmData = () => {
                     setZones(response.data);
                     // console.log(response.data);
                 })
-                .catch(error => console.error('Error fetching recommendation:', error));
+                .catch(error => console.error('Error fetching zone:', error));
+        };
+        const fetchSoils = () => {
+            axios.get(`${URL}/soils`)
+                .then(response => {
+                    setSoils(response.data);
+                    // console.log(response.data);
+                })
+                .catch(error => console.error('Error fetching soil:', error));
         };
 
         fetchZones();
+        fetchSoils();
+        setLoading(false);
     },[]);
 
     useEffect(() => {
+        setLoading(true);
         const lat = location.lat;
         const lon = location.lon;
         if( lat == null || lon == null){
@@ -47,63 +60,54 @@ const FarmData = () => {
         const fetchCurrentZone = () => {
             axios.get(`${URL}/current_zone?lat=${location.lat}&lon=${location.lon}`)
                 .then(response => {
-                    setCurrentZone(response.data);
+                    const zone = zones.find(zone => zone.Name === response.data);
+                    // setCurrentZone( zone ? zone.ZoneId : 6);
+                    // bcoz it is only for zone 6
+                    setCurrentZone(6);
                     // console.log(response.data);
                 })
                 .catch(error => console.error('Error fetching recommendation:', error));
         };
 
         fetchCurrentZone();
-    },[location.lat, location.lon]);
-
-    const handleSoilTypeChange = (event) => {
-        setSoilType(event.target.value);
-        fetchSeasonalCrops(event.target.value)
-        fetchRecommendations(event.target.value);
-    };
-    const handleZoneChange = (event) => {
-        setCurrentZone(event.target.value);
-    };
+        setLoading(false);
+    },[location.lat, location.lon, zones]);
 
     useEffect(() => {
-        const fetchRecommendations = (soil_type) => {
-            axios.get(`${URL}/recommended_crops?soil_type=${soil_type}`)
+        setLoading(true);
+        const fetchRecommendations = (zoneId) => {
+            axios.get(`${URL}/crops?zone_id=${zoneId}`)
                 .then(response => {
-                    setRecommended_crops(response.data);
-                    // console.log(response.data);
-                })
-                .catch(error => console.error('Error fetching recommendation:', error));
-        };
-    
-        const fetchSeasonalCrops = (soil_type) => {
-            axios.get(`${URL}/seasonal_crops?soil_type=${soil_type}`)
-                .then(response => {
-                    setSeasonal_crops(response.data);
+                    setCrops(response.data);
                     // console.log(response.data);
                 })
                 .catch(error => console.error('Error fetching recommendation:', error));
         };
 
-        fetchRecommendations("Clay");
-        fetchSeasonalCrops("Clay");
+        fetchRecommendations(6);
+        setLoading(false);
     },[]);
 
-    const fetchRecommendations = (soil_type) => {
-        axios.get(`${URL}/recommended_crops?soil_type=${soil_type}`)
-            .then(response => {
-                setRecommended_crops(response.data);
-                // console.log(response.data);
-            })
-            .catch(error => console.error('Error fetching recommendation:', error));
+    const handleSoilTypeChange = (event) => {
+        setCurrentSoil(event.target.value);
+    };
+    const handleZoneChange = (event) => {
+        // setCurrentZone(event.target.value);
+        // fetchRecommendations(currentZone);
+        // bcoz it is only for zone 6
+        alert("Setting current zone to Zone 6, Bcoz only Zone 6 is available.");  // Show an alert
+        setCurrentZone(6);
     };
 
-    const fetchSeasonalCrops = (soil_type) => {
-        axios.get(`${URL}/seasonal_crops?soil_type=${soil_type}`)
+    const fetchRecommendations = (zoneId) => {
+        setLoading(true);
+        axios.get(`${URL}/crops?zone_id=${zoneId}`)
             .then(response => {
-                setSeasonal_crops(response.data);
+                setCrops(response.data);
                 // console.log(response.data);
             })
             .catch(error => console.error('Error fetching recommendation:', error));
+        setLoading(false);
     };
 
     return (
@@ -131,8 +135,8 @@ const FarmData = () => {
                         onMouseOut={(e) => e.target.style.borderColor = '#ccc'}
                     >
                         {zones.map((element, index) => (
-                            <option key={index} value={element}>
-                            {element}
+                            <option key={index} value={element.ZoneId}>
+                            {element.Name}
                             </option>
                         ))}
                     </select>
@@ -144,29 +148,29 @@ const FarmData = () => {
                     </label>
                     <select
                         id="soilType"
-                        value={soilType}
+                        value={currentSoil}
                         onChange={handleSoilTypeChange}
                         style={selectStyle}
                         onMouseOver={(e) => e.target.style.borderColor = hoverEffect.borderColor}
                         onMouseOut={(e) => e.target.style.borderColor = '#ccc'}
                     >
-                        <option value="Clay">Clay</option>
-                        <option value="Loamy">Loamy</option>
-                        <option value="Alluvial">Alluvial</option>
-                        <option value="Humus">Humus</option>
-                        <option value="Mucky">Mucky</option>
-                        <option value="Sandy Loam">Sandy Loam</option>
+                        {soils.map((element, index) => (
+                            <option key={index} value={element}>
+                            {element}
+                            </option>
+                        ))}
                     </select>
                 </>
             </LocationInfo>
-            <DataItem>
-                <SectionTitle>Recommended Crops & Plants</SectionTitle>
-                <CropList recommended_crops={recommended_crops}/>
-            </DataItem>
-            <DataItem>
-                <SectionTitle>Seasonal Crops & Plants</SectionTitle>
-                <CropList recommended_crops={seasonal_crops}/>
-            </DataItem>
+            
+            {loading ? (
+                <p style={labelStyle}>Loading...</p>  // Show loading message if data is being fetched
+            ) : (
+                <DataItem>
+                    <SectionTitle>Recommended Crops & Plants</SectionTitle>
+                    <CropList crops={crops}/>
+                </DataItem>
+            )}
         </Section>
     );
 };
