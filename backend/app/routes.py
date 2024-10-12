@@ -28,7 +28,7 @@ def get_seasonal():
     return jsonify(get_crops(soil_type_input))
 
 
-
+# @main_routes.route('/predict', methods=['GET'])
 def get_weather_data_n_predict_n_save():
     weather_history, weather_forecast = get_data()
     fine_tune(weather_forecast)
@@ -41,11 +41,10 @@ def get_pattern_n_save():
     crops_dict = get_crop_pattern()
     weather_forecast = get_weather_forecast() 
     match_pattern_n_save(crops_dict, weather_forecast)
-    
     return jsonify("Done")
 
 
-@main_routes.route('/u', methods=['GET'])
+# @main_routes.route('/u', methods=['GET'])
 def u():
     # Load your CSV file
     # df = pd.read_csv('D:/Hacks/ai-driven-farm/backend/app/Safflower.csv')
