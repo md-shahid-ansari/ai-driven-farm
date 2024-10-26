@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_pymongo import PyMongo
+from flask_cors import CORS
 import os
 from dotenv import load_dotenv
 
@@ -8,12 +9,14 @@ load_dotenv()
 
 # Get MongoDB URI from environment variables
 MONGO_URI = os.getenv('MONGO_URI', '')
+frontend = os.getenv('FRONTEND', 'http://localhost:3000')
 
 # Initialize PyMongo without an app (to be initialized later)
 mongo = PyMongo()
 
 def create_app():
     app = Flask(__name__, static_folder='../frontend/build', template_folder='../frontend/build')
+    CORS(app, origins=frontend, methods=["GET", "POST"], allow_headers=["Content-Type", "Authorization"])
 
 
     # Set MongoDB URI
@@ -23,9 +26,13 @@ def create_app():
     mongo.init_app(app) 
     print(" * Database :", mongo.db.name)
 
-    # Register the main routes (make sure routes.py exists and is correctly set up)
+    # Register the main routes 
     from app.routes import main_routes
     app.register_blueprint(main_routes)
+
+    # Register the admin routes 
+    from app.admin.routes import admin
+    app.register_blueprint(admin)
 
     return app
 

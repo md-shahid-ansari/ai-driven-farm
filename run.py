@@ -1,15 +1,7 @@
 from app import create_app
-from flask_cors import CORS
 from flask import send_from_directory
-import os
-from dotenv import load_dotenv
-load_dotenv()
-
-frontend = os.getenv('FRONTEND', 'http://localhost:3000')
 
 app = create_app()
-CORS(app, origins=frontend, methods=["GET", "POST"], allow_headers=["Content-Type", "Authorization"])
-
 
 @app.route('/')
 def index():
