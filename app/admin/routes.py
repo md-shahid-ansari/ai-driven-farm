@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify
-from app.controllers import get_crop_pattern, get_weather_forecast, match_pattern_n_save
+from app.admin.utils import get_crop_pattern, get_weather_forecast, match_pattern_n_save
 from app.admin.controllers import get_data, forecast_n_save, fine_tune
 
 admin = Blueprint('admin', __name__)
