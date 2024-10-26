@@ -26,14 +26,6 @@ def create_app():
     mongo.init_app(app) 
     print(" * Database :", mongo.db.name)
 
-    # Register the main routes 
-    from app.routes import main_routes
-    app.register_blueprint(main_routes)
-
-    # Register the admin routes 
-    from app.admin.routes import admin
-    app.register_blueprint(admin)
-
     return app
 
 def get_db():
