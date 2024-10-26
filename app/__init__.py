@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask , send_from_directory
 from flask_pymongo import PyMongo
 from flask_cors import CORS
 import os
@@ -15,9 +15,8 @@ frontend = os.getenv('FRONTEND', 'http://localhost:3000')
 mongo = PyMongo()
 
 def create_app():
-    app = Flask(__name__, static_folder='../frontend/build', template_folder='../frontend/build')
-    CORS(app, origins=frontend, methods=["GET", "POST"], allow_headers=["Content-Type", "Authorization"])
-
+    app = Flask(__name__, static_url_path='', static_folder='../frontend/build', template_folder='../frontend/build')
+    CORS(app, resources={r"*": {"origins": frontend}})
 
     # Set MongoDB URI
     app.config["MONGO_URI"] = MONGO_URI
