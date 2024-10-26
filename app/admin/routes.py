@@ -1,8 +1,10 @@
 from flask import Blueprint, jsonify
 from app.admin.utils import get_crop_pattern, get_weather_forecast, match_pattern_n_save
 from app.admin.controllers import get_data, forecast_n_save, fine_tune
+from flask_cors import CORS
 
 admin = Blueprint('admin', __name__)
+CORS(admin)
 
 # @admin.route('/predict', methods=['GET'])
 def get_weather_data_n_predict_n_save():

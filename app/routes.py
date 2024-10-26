@@ -1,8 +1,10 @@
 from flask import Blueprint, jsonify, request
 from app.controllers import get_zones, get_current_zone, get_crops , get_soils
+from flask_cors import CORS
 
 
 main_routes = Blueprint('main', __name__)
+CORS(main_routes)
 
 # For zone information -------------------------------------------------------------------------------
 
