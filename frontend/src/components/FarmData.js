@@ -3,7 +3,8 @@ import axios from 'axios';
 import { Section, SectionTitle, DataItem, LocationInfo, labelStyle, selectStyle, hoverEffect } from '../styles';
 import CropList from './CropList';
 
-const URL = "http://localhost:5000";
+// const URL = "http://localhost:5000";
+const URL = "https://farm-ai-5w5g.onrender.com";
 
 const FarmData = () => {
     const [crops, setCrops] = useState([]);
