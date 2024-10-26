@@ -1,20 +1,16 @@
 from app import create_app
-from flask import send_from_directory
+from flask_cors import CORS
+import os
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
+
+frontend = os.getenv('FRONTEND', 'http://localhost:3000')
 
 app = create_app()
 
-@app.route('/')
-def index():
-    return app.send_static_file('index.html')
-
-# Serve other static files (e.g., CSS, JS)
-@app.route('/static/<path:path>')
-def send_static(path):
-        return send_from_directory(app.static_folder, path)
-
-@app.route('/<path:filename>')
-def serve_other_files(filename):
-    return send_from_directory(app.static_folder, filename)
+CORS(app, resources={r"*": {"origins": frontend}})
 
 if __name__ == '__main__':
     app.run(debug=True)
