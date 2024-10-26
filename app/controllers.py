@@ -1,13 +1,5 @@
 from app import get_db
 db = get_db()
-import requests
-import os
-from dotenv import load_dotenv
-load_dotenv()
-import pandas as pd
-import numpy as np
-from tslearn.metrics import dtw
-from datetime import timedelta
 
 
 
