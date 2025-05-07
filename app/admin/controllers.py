@@ -30,7 +30,6 @@ def format_weather_data(weather_data):
         'Min Temp': weather_data['Min Temp'],
         'Max Temp': weather_data['Max Temp'],
         'Humidity': weather_data['Humidity'],
-        'Pressure': weather_data['Pressure'],
         'Precipitation': weather_data['Precipitation']
     }
 
@@ -52,13 +51,13 @@ def get_data(ZoneId = 6):
         weather_forecast.append(formatted_data)
 
 
-    features = ['Date', 'Min Temp', 'Max Temp', 'Humidity', 'Pressure', 'Precipitation']
+    features = ['Date', 'Min Temp', 'Max Temp', 'Humidity', 'Precipitation']
     
     # Create a DataFrame for the future weather predictions
     future_weather_df = pd.DataFrame(weather_forecast, columns=features)
     future_weather_df['ZoneId'] = ZoneId
     # Reorder columns
-    future_weather_df = future_weather_df[['Date', 'Min Temp', 'Max Temp', 'Humidity', 'Pressure', 'Precipitation', 'ZoneId']]
+    future_weather_df = future_weather_df[['Date', 'Min Temp', 'Max Temp', 'Humidity', 'Precipitation', 'ZoneId']]
 
     # Initialize counters
     update_count = 0
@@ -79,7 +78,6 @@ def get_data(ZoneId = 6):
                 'Min Temp': row['Min Temp'],
                 'Max Temp': row['Max Temp'],
                 'Humidity': row['Humidity'],
-                'Pressure': row['Pressure'],
                 'Precipitation': row['Precipitation']
             }
         }
@@ -137,7 +135,7 @@ def fine_tune(data):
     data.drop(columns=['Date'], inplace=True)
 
     # Select features for prediction
-    features = ['Min Temp', 'Max Temp', 'Humidity', 'Pressure', 'Precipitation']
+    features = ['Min Temp', 'Max Temp', 'Humidity', 'Precipitation']
     data = data[features]
 
     # Scale the data between 0 and 1
@@ -197,7 +195,7 @@ def forecast_n_save(data, ZoneId = 6):
     data.drop(columns=['Date'], inplace=True)
 
     # Select features for prediction
-    features = ['Min Temp', 'Max Temp', 'Humidity', 'Pressure', 'Precipitation']
+    features = ['Min Temp', 'Max Temp', 'Humidity', 'Precipitation']
     data = data[features]
 
     # Scale the data using used scaler
@@ -236,7 +234,7 @@ def forecast_n_save(data, ZoneId = 6):
     future_weather_df['ZoneId'] = ZoneId  # Set ZoneId to 6 for all entries
 
     # Reorder columns
-    future_weather_df = future_weather_df[['Date', 'Min Temp', 'Max Temp', 'Humidity', 'Pressure', 'Precipitation', 'ZoneId']]
+    future_weather_df = future_weather_df[['Date', 'Min Temp', 'Max Temp', 'Humidity', 'Precipitation', 'ZoneId']]
 
     # Initialize counters
     update_count = 0
@@ -257,7 +255,6 @@ def forecast_n_save(data, ZoneId = 6):
                 'Min Temp': row['Min Temp'],
                 'Max Temp': row['Max Temp'],
                 'Humidity': row['Humidity'],
-                'Pressure': row['Pressure'],
                 'Precipitation': row['Precipitation']
             }
         }

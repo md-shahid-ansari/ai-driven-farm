@@ -23,7 +23,6 @@ def get_crop_pattern():
             'Max Temp': entry.get('Max Temp'),
             'Min Temp': entry.get('Min Temp'),
             'Precipitation': entry.get('Precipitation'),
-            'Pressure': entry.get('Pressure')
         }
         
         # Initialize the crop entry if not already present
@@ -42,7 +41,6 @@ def format_weather_data(weather_data):
         'Min Temp': weather_data['Min Temp'],
         'Max Temp': weather_data['Max Temp'],
         'Humidity': weather_data['Humidity'],
-        'Pressure': weather_data['Pressure'],
         'Precipitation': weather_data['Precipitation']
     }
 
@@ -57,12 +55,12 @@ def get_weather_forecast(ZoneId = 6):
         formatted_data = format_weather_data(weather)
         weather_forecast.append(formatted_data)
 
-    features = ['Date', 'Min Temp', 'Max Temp', 'Humidity', 'Pressure', 'Precipitation']
+    features = ['Date', 'Min Temp', 'Max Temp', 'Humidity', 'Precipitation']
     data = pd.DataFrame(weather_forecast,columns=features)
     return data
 
 def match_pattern_n_save(crops_dict, weather_forecast):
-    features = ['Min Temp', 'Max Temp', 'Humidity', 'Pressure', 'Precipitation']
+    features = ['Min Temp', 'Max Temp', 'Humidity', 'Precipitation']
     growth_column = ['Day','Growth Stage']
     forecast = pd.DataFrame(weather_forecast,columns=features)
     df_forecast = np.round(forecast, 1)
