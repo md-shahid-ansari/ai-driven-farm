@@ -28,6 +28,7 @@ def format_weather_data(weather_data):
         'Precipitation': weather_data['Precipitation']
     }
 
+
 def get_data(ZoneId = 6):
     weather_history = []
     weather_forecast = []
@@ -104,6 +105,7 @@ def get_data(ZoneId = 6):
     # Return both DataFrames
     return df_history, df_forecast
 
+
 def create_sequences(data, sequence_length, prediction_length):
     sequences = []
     labels = []
@@ -114,11 +116,14 @@ def create_sequences(data, sequence_length, prediction_length):
         labels.append(label)
     return np.array(sequences), np.array(labels)
 
+
 def dynamic_learning_rate(n):
     return max(0.00001, 0.001 * math.sqrt(100 / n))  # Scale inversely with sqrt(n)
 
+
 def dynamic_batch_size(n):
     return min(64, max(2, n // 20))  # Scale batch size with n, clamped between 2 and 64
+
 
 def fine_tune(data):
     n = len(data)
@@ -180,6 +185,7 @@ def fine_tune(data):
 
     # Train the model and save the history
     model.fit(X_train, y_train, epochs=100, batch_size=batch_size, validation_data=(X_test, y_test), callbacks=[early_stopping, model_checkpoint])
+
 
 def forecast_n_save(data, ZoneId = 6):
 

@@ -23,15 +23,14 @@ def get_weather_data_n_predict_n_save():
 
 # @admin.route('/match', methods=['GET'])
 def get_pattern_n_save():
-    crops_dict = get_crop_pattern()
+    crops = get_crop_pattern()
     weather_forecast = get_weather_forecast() 
-    match_pattern_n_save(crops_dict, weather_forecast)
+    match_pattern_n_save(crops, weather_forecast)
     return jsonify("Done")
 
 
 @admin.route('/u', methods=['GET'])
 def u():
     db = get_db()
-    data = db.crops.find({"Stages": {"$exists": True}})
-
+    data = get_weather_forecast()
     return dumps(data)

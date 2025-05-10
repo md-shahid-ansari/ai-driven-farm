@@ -6,33 +6,13 @@ from tslearn.metrics import dtw
 from datetime import timedelta
 
 def get_crop_pattern():
-    crops_pattern = db.crop_weather_pattern.find()
-    # Create a dictionary to store crop weather patterns
-    crops_dict = {}
-    
-    # Iterate over the crop patterns
-    for entry in crops_pattern:
-        
-        crop_name = entry.get('Crop Name')  # Fetch the crop name
-        day = entry.get('Day')  # Fetch the day
-        growth_stage = entry.get('Growth Stage')  # Fetch the growth stage
-        weather_data = {
-            'Day': day,
-            'Growth Stage': growth_stage,
-            'Humidity': entry.get('Humidity'),
-            'Max Temp': entry.get('Max Temp'),
-            'Min Temp': entry.get('Min Temp'),
-            'Precipitation': entry.get('Precipitation'),
-        }
-        
-        # Initialize the crop entry if not already present
-        if crop_name not in crops_dict:
-            crops_dict[crop_name] = []
-        
-        # Append the weather data for that day
-        crops_dict[crop_name].append(weather_data)
-    
-    return crops_dict
+    crops = db.crops.find({"Stages": {"$exists": True}})
+    result = []
+    for crop in crops:
+        crop.pop("_id", None)  # remove _id
+        result.append(crop)
+    return result
+
 
 def format_weather_data(weather_data):
     """Helper function to format a single weather document."""
@@ -43,6 +23,7 @@ def format_weather_data(weather_data):
         'Humidity': weather_data['Humidity'],
         'Precipitation': weather_data['Precipitation']
     }
+
 
 def get_weather_forecast(ZoneId = 6):
     weather_forecast = []
@@ -57,6 +38,7 @@ def get_weather_forecast(ZoneId = 6):
     features = ['Date', 'Min Temp', 'Max Temp', 'Humidity', 'Precipitation']
     data = pd.DataFrame(weather_forecast,columns=features)
     return data
+
 
 def match_pattern_n_save(crops_dict, weather_forecast):
     features = ['Min Temp', 'Max Temp', 'Humidity', 'Precipitation']
@@ -141,7 +123,7 @@ def match_pattern_n_save(crops_dict, weather_forecast):
         else:
             print(f"{name} - Data inserted successfully into crops_predicted collection.")
     return
-    
+
 # Function to match crop weather with weather data
 def match_pattern(weather_features, crop_data):
     # Compute DTW distance for each subsequence in weather data (window size = length of crop_data)
