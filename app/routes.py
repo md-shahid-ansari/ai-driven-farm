@@ -2,6 +2,9 @@ from flask import Blueprint, jsonify
 from app.utils import get_crop_pattern, get_weather_forecast, match_pattern_n_save
 from app.controllers import get_data, forecast_n_save, fine_tune
 from flask_cors import CORS
+from app import get_db
+from bson.json_util import dumps
+import pandas as pd
 
 admin = Blueprint('admin', __name__)
 CORS(admin)
@@ -28,27 +31,7 @@ def get_pattern_n_save():
 
 @admin.route('/u', methods=['GET'])
 def u():
-    # Load your CSV file
-    # df = pd.read_csv('D:/Hacks/ai-driven-farm/backend/app/Safflower.csv')
+    db = get_db()
+    data = db.crops.find({"Stages": {"$exists": True}})
 
-    # # Add the "Crop Name" column with a default value (e.g., "Wheat")
-    # df['Crop Name'] = 'Safflower'  # Change 'Wheat' to the desired crop name
-
-    # # Convert the DataFrame to a list of dictionaries
-    # data_dict = df.to_dict(orient='records')
-    # db = get_db()
-    # db.crop_weather_pattern.insert_many(data_dict)
-    
-    # db = get_db()
-    # db.crop_weather_pattern.update_many(
-    # {},
-    # {
-    #     '$rename': {
-    #         'Minimum Temperature (°C)': 'Min Temp',
-    #         'Maximum Temperature (°C)': 'Max Temp',
-    #         'Humidity (%)': 'Humidity',
-    #         'Pressure (hPa)': 'Pressure',
-    #         'Precipitation (mm)': 'Precipitation'
-    #     }
-    # })
-    return jsonify("Done")
+    return dumps(data)

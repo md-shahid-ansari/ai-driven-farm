@@ -44,7 +44,6 @@ def format_weather_data(weather_data):
         'Precipitation': weather_data['Precipitation']
     }
 
-
 def get_weather_forecast(ZoneId = 6):
     weather_forecast = []
     # Fetch previous weather forecasts from MongoDB
@@ -98,12 +97,8 @@ def match_pattern_n_save(crops_dict, weather_forecast):
         # Drop specified fields
         fields_to_drop = [
             '_id', 
-            'Temperature', 
             'Soil Type', 
-            'Humidity', 
-            'Wind Speed', 
-            'Planting Dates', 
-            'Harvesting Dates'
+            'Humidity',
         ]
 
         for field in fields_to_drop:

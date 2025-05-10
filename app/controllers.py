@@ -4,11 +4,6 @@ from sklearn.preprocessing import MinMaxScaler
 from keras import models , layers, callbacks, optimizers, losses
 from datetime import datetime
 import math
-import os
-from dotenv import load_dotenv
-
-# Load environment variables
-load_dotenv()
 
 from app import get_db
 db = get_db()
@@ -19,7 +14,7 @@ EarlyStopping, ModelCheckpoint = callbacks.EarlyStopping, callbacks.ModelCheckpo
 Adam = optimizers.Adam
 MeanSquaredError = losses.MeanSquaredError
 
-root = os.getenv('ROOT', '')
+model_path = "D:/Hacks/ai-driven-farm/app/model/best_model.keras"
 
 scaler = MinMaxScaler()
 
@@ -109,7 +104,6 @@ def get_data(ZoneId = 6):
     # Return both DataFrames
     return df_history, df_forecast
 
-
 def create_sequences(data, sequence_length, prediction_length):
     sequences = []
     labels = []
@@ -174,7 +168,7 @@ def fine_tune(data):
     print("Dynamic Batch Size:", batch_size)
 
     # Load the trained model
-    model = load_model(root + '/app/model/best_model.keras')
+    model = load_model(model_path)
 
 
     # Compile the model with a lower learning rate (e.g., 0.0005)
@@ -182,7 +176,7 @@ def fine_tune(data):
 
     # Set up callbacks for early stopping and model checkpointing
     early_stopping = EarlyStopping(monitor='val_loss', patience=10, restore_best_weights=True)
-    model_checkpoint = ModelCheckpoint(root + '/app/model/best_model.keras', save_best_only=True)
+    model_checkpoint = ModelCheckpoint(model_path, save_best_only=True)
 
     # Train the model and save the history
     model.fit(X_train, y_train, epochs=100, batch_size=batch_size, validation_data=(X_test, y_test), callbacks=[early_stopping, model_checkpoint])
@@ -209,7 +203,7 @@ def forecast_n_save(data, ZoneId = 6):
     last_sequence = scaled_df.values[-sequence_length:].reshape(1, sequence_length, len(features))  # Ensure correct shape
 
     # Load the trained model
-    model = load_model(root + '/app/model/best_model.keras')
+    model = load_model(model_path)
 
     # Predict future weather for the next 366 days
     future_prediction = model.predict(last_sequence)
@@ -220,8 +214,8 @@ def forecast_n_save(data, ZoneId = 6):
     # Inverse transform the prediction back to the original scale
     future_weather = scaler.inverse_transform(future_prediction_reshaped)
 
-    # Round the predicted values to 6 decimal points
-    future_weather_rounded = np.round(future_weather, 6)
+    # Round the predicted values to 1 decimal points
+    future_weather_rounded = np.round(future_weather, 1)
 
     # Prepare data for MongoDB
     # Get the last date from the input data

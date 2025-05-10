@@ -1,4 +1,4 @@
-Crop Name,Stage,Days,Min Temp,Max Temp,Humidity, Precipitation,Stage Rank
+Crop Name,Stage,Days,Min Temp,Max Temp,Humidity,Precipitation,Stage Rank
 Chilli,Germination,7,20,30,70,7,1
 Chilli,Vegetative Growth,60,18,30,70,8.4,2
 Chilli,Flowering/Fruiting,50,20,30,70,4,3
