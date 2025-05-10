@@ -5,6 +5,9 @@ from keras import models , layers, callbacks, optimizers, losses
 from datetime import datetime
 import math
 
+from dotenv import load_dotenv
+load_dotenv()
+
 from app import get_db
 db = get_db()
 

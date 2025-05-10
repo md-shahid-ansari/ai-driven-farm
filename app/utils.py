@@ -40,19 +40,17 @@ def get_weather_forecast(ZoneId = 6):
     return data
 
 
-def match_pattern_n_save(crops_dict, weather_forecast):
-    features = ['Min Temp', 'Max Temp', 'Humidity', 'Precipitation']
-    growth_column = ['Day','Growth Stage']
-    forecast = pd.DataFrame(weather_forecast,columns=features)
-    df_forecast = np.round(forecast, 1)
+def match_pattern_n_save(crops, weather_forecast):
+    forecast = np.round(weather_forecast, 1)
     
-    for name , pattern in crops_dict.items():
-        df_pattern = pd.DataFrame(pattern, columns=features)
-
-        best_start, min_distance = match_pattern(df_forecast,df_pattern)
-
+    for crop in crops:
+        best_start, min_distance = match_pattern(forecast,crop)
+        
         # take data to stre
         best_start_date = weather_forecast['Date'].iloc[best_start]
+
+        print(f"Best start index: {best_start_date} with distance: {min_distance}")
+        continue
 
         pattern_stages = pd.DataFrame(pattern, columns=growth_column) 
         growth_stage_counts = pattern_stages['Growth Stage'].value_counts()
@@ -131,11 +129,41 @@ def match_pattern(weather_features, crop_data):
     best_start = None
 
     for i in range(len(weather_features)):
-        subsequence = circular_slice(weather_features, i, len(crop_data))
-        
+        length = 0
+        for stages in crop_data["Stages"]:
+            length += stages["Days"]
+
+        subsequence = circular_df_slice(weather_features, i, length)
+
         # Calculate DTW distance between crop requirements and subsequence of weather data
-        distance = dtw(subsequence, crop_data)
-        
+        window = 0
+        distance = 0
+        try:
+            for stages in crop_data["Stages"]:
+                days = stages["Days"]
+                min_temp = stages["Min Temp"]
+                max_temp = stages["Max Temp"]
+                humidity = stages["Humidity"]
+                precipitation = stages["Precipitation"]
+
+                window += days
+                min_temps = subsequence['Min Temp'].loc[window - days:window].sum()
+                max_temps = subsequence['Max Temp'].loc[window - days:window].sum()
+                humiditys = subsequence['Humidity'].loc[window - days:window].sum()
+                precipitations = subsequence['Precipitation'].loc[window - days:window].sum()
+
+                diff_min_temp = abs(min_temp - min_temps/days)
+                diff_max_temp = abs(max_temp - max_temps/days)
+                diff_humidity = abs(humidity - humiditys/days)
+                diff_precipitation = abs(precipitation - precipitations/days)
+
+                sum = diff_min_temp + diff_max_temp + diff_humidity + diff_precipitation
+                distance += sum / 4
+        except Exception as e:
+            print(f"Error calculating DTW for start index: {i}")
+            continue
+        # print(f"Distance: {distance} for start index: {i}")
+
         # Find the subsequence with the minimum distance
         if distance < min_distance:
             min_distance = distance
@@ -143,12 +171,14 @@ def match_pattern(weather_features, crop_data):
     return best_start, min_distance
 
 # Function to create circular subsequences from weather data
-def circular_slice(array, start, length):
-    """ Slices array circularly from 'start' for 'length' elements. """
-    n = len(array)
-    end = (start + length) % n  # Circular end position
+def circular_df_slice(df, start, length):
+    """
+    Circularly slices a DataFrame from 'start' index for 'length' rows.
+    """
+    n = len(df)
+    end = (start + length) % n
     if start < end:
-        return array[start:end]
+        return df.iloc[start:end]
     else:
-        # If it wraps around, concatenate two slices (end wraps around to the start)
-        return np.concatenate((array[start:], array[:end]), axis=0)
+        # Wrap around: take from start to end
+        return pd.concat([df.iloc[start:], df.iloc[:end]], axis=0).reset_index(drop=True)

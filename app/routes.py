@@ -21,7 +21,7 @@ def get_weather_data_n_predict_n_save():
     return jsonify("Done")
 
 
-# @admin.route('/match', methods=['GET'])
+@admin.route('/match', methods=['GET'])
 def get_pattern_n_save():
     crops = get_crop_pattern()
     weather_forecast = get_weather_forecast() 
