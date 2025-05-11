@@ -8,9 +8,6 @@ export const Container = styled.div`
   max-width: 100%;
   margin: 0 auto;
 
-  @media (max-width: 768px) {
-    padding: 15px;
-  }
 `;
 
 export const HeaderContainer = styled.header`
@@ -25,10 +22,6 @@ export const HeaderContainer = styled.header`
   align-items: center;
   justify-content: flex-start;
 
-  @media (max-width: 768px) {
-    flex-direction: column;
-    align-items: flex-start;
-  }
 `;
 
 export const Title = styled.h1`
@@ -39,9 +32,6 @@ export const Title = styled.h1`
   color: #ffffff; /* changed */
   text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.2);
 
-  @media (max-width: 768px) {
-    font-size: 2.5em;
-  }
 `;
 
 export const Section = styled.section`
@@ -56,9 +46,6 @@ export const Section = styled.section`
     transform: translateY(-4px);
   }
 
-  @media (max-width: 768px) {
-    padding: 20px;
-  }
 `;
 
 export const SectionTitle = styled.h2`
@@ -68,9 +55,6 @@ export const SectionTitle = styled.h2`
   font-weight: 600;
   text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.15);
 
-  @media (max-width: 768px) {
-    font-size: 1.4em;
-  }
 `;
 
 export const DataItem = styled.div`
@@ -79,9 +63,6 @@ export const DataItem = styled.div`
   line-height: 1.6;
   color: #e0f2f1;
 
-  @media (max-width: 768px) {
-    font-size: 0.95em;
-  }
 `;
 
 export const ListItem = styled.li`
@@ -96,10 +77,6 @@ export const ListItem = styled.li`
 
   &:hover {
     background-color: #004d00;
-  }
-
-  @media (max-width: 768px) {
-    padding: 8px;
   }
 `;
 
@@ -130,17 +107,6 @@ export const LocationInfo = styled.div`
     letter-spacing: 0.3px;
   }
 
-  @media (max-width: 768px) {
-    padding: 20px;
-
-    h3 {
-      font-size: 1.4em;
-    }
-
-    p {
-      font-size: 1em;
-    }
-  }
 `;
 
 export const labelStyle = {
