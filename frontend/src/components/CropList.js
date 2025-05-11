@@ -35,13 +35,11 @@ const CropList = (props) => {
                                     <p><strong>Season:</strong> {crop['Season']}</p>
                                     
                                     <h4>Growth Stages:</h4>
-                                    <ul>
-                                        {crop['Growth Stage'].map((stage, stageIndex) => (
-                                            <li key={stageIndex} style={{ color: '#b2ffb2' }}>
-                                                <strong>{stage.Stage}</strong>: {stage['Start Date']} ({stage.Duration} Days)
-                                            </li>
-                                        ))}
-                                    </ul>
+                                    {crop['Growth Stage'].map((stage, stageIndex) => (
+                                        <li key={stageIndex} style={{ color: '#b2ffb2'}}>
+                                            <strong>{stage.Stage}</strong>: {stage['Start Date']} ({stage.Duration} Days)
+                                        </li>
+                                    ))}
                                 </div>
                             ))}
                         </div>

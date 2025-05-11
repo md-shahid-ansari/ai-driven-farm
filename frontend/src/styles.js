@@ -124,9 +124,9 @@ export const LocationInfo = styled.div`
   p {
     margin: 8px 0;
     color: #d0fdd1;
-    font-size: 1.15em;
+    font-size: 1em;
     font-weight: 400;
-    line-height: 1.8;
+    line-height: 1.1;
     letter-spacing: 0.3px;
   }
 

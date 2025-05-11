@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import {
-    Section,
     SectionTitle,
     DataItem,
     LocationInfo,
@@ -11,8 +10,7 @@ import {
 } from '../styles';
 import CropList from './CropList';
 
-// const URL = "https://farm-ai-5w5g.onrender.com";
-const URL = "http://localhost:5000";
+const URL = "https://farm-ai-5w5g.onrender.com";
 
 const FarmData = () => {
     const [crops, setCrops] = useState([]);
@@ -131,7 +129,7 @@ const FarmData = () => {
     };
 
     return (
-        <Section>
+        <>
             <SectionTitle>🌾 Farm Data</SectionTitle>
             <LocationInfo>
                 <h3>📍 Current Location</h3>
@@ -202,7 +200,7 @@ const FarmData = () => {
                     )}
                 </DataItem>
             )}
-        </Section>
+        </>
     );
 };
 
