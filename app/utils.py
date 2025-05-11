@@ -49,36 +49,27 @@ def match_pattern_n_save(crops, weather_forecast):
         # take data to stre
         best_start_date = weather_forecast['Date'].iloc[best_start]
 
-        print(f"Best start index: {best_start_date} with distance: {min_distance}")
-        continue
-
-        pattern_stages = pd.DataFrame(pattern, columns=growth_column) 
-        growth_stage_counts = pattern_stages['Growth Stage'].value_counts()
         current_date = best_start_date
         growth_stage = []
-        for stage, count in growth_stage_counts.items():
+        for stage in crop["Stages"]:
             stage_start_date = current_date
-            stage_end_date = current_date + timedelta(days=count - 1)  # Count - 1 because we include the start day
             
             # Append the stage, start date, end date, and count with date in "DD-MM-YYYY" format
             growth_stage.append([
-                stage,
+                stage["Stage"],
                 stage_start_date.strftime('%d-%m-%Y'),  # Format date as "DD-MM-YYYY"
-                stage_end_date.strftime('%d-%m-%Y'),    # Format date as "DD-MM-YYYY"
-                count
+                stage["Days"]
             ])
             # Move the current_date to the next day after the current stage's end date
-            current_date = stage_end_date + timedelta(days=1)
-
-        crop = db.crops.find_one({'Crop Name' : name})
+            current_date = current_date + timedelta(days=stage["Days"])
+        
         # Add the additional fields to the crop data
         crop_predicted = crop.copy()  # Make a copy of the original crop document
 
         # Drop specified fields
         fields_to_drop = [
             '_id', 
-            'Soil Type', 
-            'Humidity',
+            'Stages', 
         ]
 
         for field in fields_to_drop:
@@ -91,8 +82,7 @@ def match_pattern_n_save(crops, weather_forecast):
             stage_data = {
                 'Stage': stage[0],
                 'Start Date': stage[1],
-                'End Date': stage[2],
-                'Duration': stage[3]
+                'Duration': stage[2]
             }
             formatted_growth_stage.append(stage_data)
 
@@ -110,16 +100,16 @@ def match_pattern_n_save(crops, weather_forecast):
         }
 
         # Attempt to update the document if it exists, otherwise insert a new one
-        result = db.crops_predicted.update_one(
+        result = db.crops_prediction.update_one(
             filter_condition,
             {'$set': crop_predicted},  # Update with new data
             upsert=True  # If the document doesn't exist, insert a new one
         )
 
         if result.matched_count > 0:
-            print(f"{name} - Data updated successfully in crops_predicted collection.")
+            print(f"{crop_predicted['Crop Name']} - Data updated successfully in crops_prediction collection.")
         else:
-            print(f"{name} - Data inserted successfully into crops_predicted collection.")
+            print(f"{crop_predicted['Crop Name']} - Data inserted successfully into crops_prediction collection.")
     return
 
 # Function to match crop weather with weather data
