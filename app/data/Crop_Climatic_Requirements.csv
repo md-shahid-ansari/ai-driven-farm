@@ -1,8 +1,8 @@
 Crop Name,Stage,Days,Min Temp,Max Temp,Humidity,Precipitation,Stage Rank
-Chilli,Germination,7,20,30,70,7,1
-Chilli,Vegetative Growth,60,18,30,70,8.4,2
-Chilli,Flowering/Fruiting,50,20,30,70,4,3
-Chilli,Maturity/Harvest,15,18,30,60,3.4,4
+Chili Pepper,Germination,7,20,30,70,7,1
+Chili Pepper,Vegetative Growth,60,18,30,70,8.4,2
+Chili Pepper,Flowering/Fruiting,50,20,30,70,4,3
+Chili Pepper,Maturity/Harvest,15,18,30,60,3.4,4
 Onion,Germination,10,15,25,70,2,1
 Onion,Vegetative Growth,100,15,25,60,2,2
 Onion,Bulb Formation,30,10,18,50,3.4,3
