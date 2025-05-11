@@ -27,7 +27,7 @@ const CropList = (props) => {
                                     <h3 style={{ color: '#00ff00' }}>{index + 1}. {crop['Crop Name']}</h3>
                                     <p><strong>Water Requirements:</strong> {crop['Water Requirements']} L</p>
                                     <p><strong>Soil pH Level:</strong> {crop['Soil pH Level']}</p>
-                                    <p><strong>Soil Type:</strong> {crop['Soil Type'].join(', ')}</p>
+                                    <p><strong>Soil Type:</strong> {crop['Soil Type']}</p>
                                     <p><strong>Sunshine Hours:</strong> {crop['Sunshine Hours']}</p>
                                     <p><strong>Watering Schedule:</strong> {crop['Watering Schedule']}</p>
                                     <p><strong>Irrigation Schedules:</strong> {crop['Irrigation Schedules']}</p>
@@ -38,7 +38,7 @@ const CropList = (props) => {
                                     <ul>
                                         {crop['Growth Stage'].map((stage, stageIndex) => (
                                             <li key={stageIndex} style={{ color: '#b2ffb2' }}>
-                                                <strong>{stage.Stage}</strong>: {stage['Start Date']} to {stage['End Date']} (Duration: {stage.Duration} days)
+                                                <strong>{stage.Stage}</strong>: {stage['Start Date']} ({stage.Duration} Days)
                                             </li>
                                         ))}
                                     </ul>

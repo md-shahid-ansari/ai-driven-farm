@@ -90,9 +90,9 @@ const FarmData = () => {
 
     useEffect(() => {
         const fetchRecommendations = async (zoneId) => {
-            if (!zoneId) return;
             setLoading(true);
-
+            if (!zoneId) return;
+            
             try {
                 const response = await axios.get(`${URL}/crops?zone_id=${zoneId}`);
                 setCrops(response.data);
@@ -108,6 +108,7 @@ const FarmData = () => {
     }, [currentZone]);
 
     const handleSoilTypeChange = (event) => {
+        setLoading(true);
         const selectedSoil = event.target.value;
         setCurrentSoil(selectedSoil);
 
@@ -117,6 +118,7 @@ const FarmData = () => {
             const filtered = crops.filter(crop => crop['Soil Type']?.includes(selectedSoil));
             setFilteredCrops(filtered);
         }
+        setLoading(false);
     };
 
     const handleZoneChange = () => {

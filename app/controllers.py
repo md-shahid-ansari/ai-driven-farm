@@ -57,12 +57,7 @@ def get_soils():
         soils = [soil['Soil Type'] for soil in soils_cursor]  # Extract only the 'Soil Type' field
         
         for s in soils:
-            if isinstance(s, list):  # Check if s is a list
-                # Flatten and split the soil types if it's a list
-                for item in s:
-                    soil_list.update(item.split(', '))
-            elif isinstance(s, str):  # Check if s is a string
-                soil_list.add(s)  # Add the string directly to the set
+            soil_list.update(s.split(', '))
 
         return list(soil_list)  # Convert set back to list for return
     except Exception as e:
