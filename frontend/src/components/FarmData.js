@@ -1,9 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Section, SectionTitle, DataItem, LocationInfo, labelStyle, selectStyle, hoverEffect } from '../styles';
+import {
+    Section,
+    SectionTitle,
+    DataItem,
+    LocationInfo,
+    labelStyle,
+    selectStyle,
+    hoverEffect,
+} from '../styles';
 import CropList from './CropList';
 
-// const URL = "http://localhost:5000";
 const URL = "https://farm-ai-5w5g.onrender.com";
 
 const FarmData = () => {
@@ -51,8 +58,8 @@ const FarmData = () => {
                     setLoading(false);
                 },
                 (err) => {
-                    setErrorLoc('Error retrieving location');
-                    console.error('Error retrieving location:', err);
+                    setErrorLoc('⚠️ Unable to retrieve your location.');
+                    console.error('Location error:', err);
                     setLoading(false);
                 }
             );
@@ -63,16 +70,13 @@ const FarmData = () => {
 
     useEffect(() => {
         const fetchCurrentZone = async () => {
-            if (location.lat == null || location.lon == null) return;
-
+            if (!location.lat || !location.lon) return;
             setLoading(true);
+
             try {
                 const response = await axios.get(`${URL}/current_zone?lat=${location.lat}&lon=${location.lon}`);
-                const zone = zones.find(zone => zone.Name === response.data);
-                // setCurrentZone(zone ? zone.ZoneId : 6);
-                //for now data is only available for zone 6
-                setCurrentZone(zone ? 6 : 6);
-
+                // Only Zone 6 is supported in this version
+                setCurrentZone(6);
             } catch (error) {
                 console.error('Error fetching current zone:', error);
             } finally {
@@ -86,14 +90,14 @@ const FarmData = () => {
     useEffect(() => {
         const fetchRecommendations = async (zoneId) => {
             if (!zoneId) return;
-
             setLoading(true);
+
             try {
                 const response = await axios.get(`${URL}/crops?zone_id=${zoneId}`);
                 setCrops(response.data);
                 setFilteredCrops(response.data);
             } catch (error) {
-                console.error('Error fetching recommendations:', error);
+                console.error('Error fetching crops:', error);
             } finally {
                 setLoading(false);
             }
@@ -105,38 +109,41 @@ const FarmData = () => {
     const handleSoilTypeChange = (event) => {
         const selectedSoil = event.target.value;
         setCurrentSoil(selectedSoil);
-        if (selectedSoil === "All"){
-            setFilteredCrops(crops);
-            return;
-        }
 
-        // Filter crops based on the selected soil type
-        const filtered = crops.filter(crop => crop['Soil Type'] && crop['Soil Type'].includes(selectedSoil));
-        setFilteredCrops(filtered);
+        if (selectedSoil === "All") {
+            setFilteredCrops(crops);
+        } else {
+            const filtered = crops.filter(crop => crop['Soil Type']?.includes(selectedSoil));
+            setFilteredCrops(filtered);
+        }
     };
 
-    const handleZoneChange = (event) => {
-        alert("Setting current zone to Zone 6, because only Zone 6 is available.");
+    const handleZoneChange = () => {
+        alert("Only Zone 6 is available in the current version.");
         setCurrentZone(6);
+    };
+
+    const handleHover = (e, hover = true) => {
+        e.target.style.borderColor = hover ? hoverEffect.borderColor : '#00ff00';
     };
 
     return (
         <Section>
-            <SectionTitle>Farm Data</SectionTitle>
+            <SectionTitle>🌾 Farm Data</SectionTitle>
             <LocationInfo>
-                <h3>Current Location</h3>
+                <h3>📍 Current Location</h3>
                 {errorLoc ? (
                     <p>{errorLoc}</p>
                 ) : (
                     <>
-                        <p><strong>Latitude: {location.lat}</strong></p>
-                        <p><strong>Longitude: {location.lon}</strong></p>
+                        <p><strong>Latitude:</strong> {location.lat ?? 'Detecting...'}</p>
+                        <p><strong>Longitude:</strong> {location.lon ?? 'Detecting...'}</p>
                     </>
                 )}
+
                 <br />
-                <label htmlFor="zone" style={labelStyle}>
-                    Current zone  
-                </label>
+
+                <label htmlFor="zone" style={labelStyle}>Zone</label>
                 {loadingZones ? (
                     <p>Loading zones...</p>
                 ) : (
@@ -145,20 +152,20 @@ const FarmData = () => {
                         value={currentZone}
                         onChange={handleZoneChange}
                         style={selectStyle}
-                        onMouseOver={(e) => e.target.style.borderColor = hoverEffect.borderColor}
-                        onMouseOut={(e) => e.target.style.borderColor = '#ccc'}
+                        onMouseOver={(e) => handleHover(e, true)}
+                        onMouseOut={(e) => handleHover(e, false)}
                     >
-                        {zones.map((element) => (
-                            <option key={element.ZoneId} value={element.ZoneId}>
-                                {element.Name}
+                        {zones.map((zone) => (
+                            <option key={zone.ZoneId} value={zone.ZoneId}>
+                                {zone.Name}
                             </option>
                         ))}
                     </select>
                 )}
-                <br />
-                <label htmlFor="soilType" style={labelStyle}>
-                    Soil
-                </label>
+
+                <br /><br />
+
+                <label htmlFor="soilType" style={labelStyle}>Soil Type</label>
                 {loadingSoils ? (
                     <p>Loading soils...</p>
                 ) : (
@@ -167,15 +174,13 @@ const FarmData = () => {
                         value={currentSoil}
                         onChange={handleSoilTypeChange}
                         style={selectStyle}
-                        onMouseOver={(e) => e.target.style.borderColor = hoverEffect.borderColor}
-                        onMouseOut={(e) => e.target.style.borderColor = '#ccc'}
+                        onMouseOver={(e) => handleHover(e, true)}
+                        onMouseOut={(e) => handleHover(e, false)}
                     >
-                        <option key={0} value="All">
-                                All
-                            </option>
-                        {soils.map((element, index) => (
-                            <option key={index + 1} value={element}>
-                                {element}
+                        <option value="All">All</option>
+                        {soils.map((soil, idx) => (
+                            <option key={idx} value={soil}>
+                                {soil}
                             </option>
                         ))}
                     </select>
@@ -183,11 +188,15 @@ const FarmData = () => {
             </LocationInfo>
 
             {loading ? (
-                <p>Loading...</p>
+                <p style={{ color: '#b2ffb2' }}>🔄 Loading crop recommendations...</p>
             ) : (
                 <DataItem>
-                    <SectionTitle>Recommended Crops & Plants</SectionTitle>
-                    <CropList crops={filteredCrops} />
+                    <SectionTitle>✅ Recommended Crops & Plants</SectionTitle>
+                    {filteredCrops.length > 0 ? (
+                        <CropList crops={filteredCrops} />
+                    ) : (
+                        <p style={{ color: '#ffcc00' }}>⚠️ No crops found for the selected soil type.</p>
+                    )}
                 </DataItem>
             )}
         </Section>
@@ -195,3 +204,5 @@ const FarmData = () => {
 };
 
 export default FarmData;
+
+
