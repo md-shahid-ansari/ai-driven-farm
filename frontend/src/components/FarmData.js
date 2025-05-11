@@ -11,7 +11,8 @@ import {
 } from '../styles';
 import CropList from './CropList';
 
-const URL = "https://farm-ai-5w5g.onrender.com";
+// const URL = "https://farm-ai-5w5g.onrender.com";
+const URL = "http://localhost:5000";
 
 const FarmData = () => {
     const [crops, setCrops] = useState([]);
@@ -74,7 +75,7 @@ const FarmData = () => {
             setLoading(true);
 
             try {
-                const response = await axios.get(`${URL}/current_zone?lat=${location.lat}&lon=${location.lon}`);
+                // const response = await axios.get(`${URL}/current_zone?lat=${location.lat}&lon=${location.lon}`);
                 // Only Zone 6 is supported in this version
                 setCurrentZone(6);
             } catch (error) {
