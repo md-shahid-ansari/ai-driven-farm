@@ -1,8 +1,6 @@
 from app import get_db
 db = get_db()
 
-
-
 def get_zones():
     try:
         # Fetch all documents from the collection
@@ -65,35 +63,15 @@ def get_soils():
         return []
 
 def get_crops(zoneId):
-    
     # Find all crops based on ZoneId
-    result = db.crops_predicted.find({"ZoneId": int(zoneId)})
+    result = db.crops_prediction.find({"ZoneId": int(zoneId)})
     crops = []
     
     for crop in result:
-        
-        # Get soil type using the crop name
-        soil_info = db.crops.find_one({"Crop Name": crop['Crop Name']})
-        
         # Create a dictionary with all fields except '_id'
         crop_data = {key: value for key, value in crop.items() if key != '_id'}
-        
-        # Add soil type information if available
-        if soil_info and "Soil Type" in soil_info:
-            soil = soil_info["Soil Type"]
-            # If soil type is a string, wrap it in a list as a single soil type
-            if isinstance(soil, str):
-                crop_data['Soil Type'] = [soil]
-            elif isinstance(soil, list):
-                # If the list contains only one element and it's a comma-separated string, split it
-                if len(soil) == 1 and isinstance(soil[0], str):
-                    crop_data['Soil Type'] = [s.strip() for s in soil[0].split(',')]
-                else:
-                    crop_data['Soil Type'] = soil  # Keep the list as is if it's already correct
-        
         
         # Append the crop data with soil type
         crops.append(crop_data)
 
     return crops
-
