@@ -33,6 +33,7 @@ const CropList = (props) => {
                                     <p><strong>Irrigation Schedules:</strong> {crop['Irrigation Schedules']}</p>
                                     <p><strong>Fertilizer Schedules:</strong> {crop['Fertilizer Schedules']}</p>
                                     <p><strong>Season:</strong> {crop['Season']}</p>
+                                    <p><strong>DTW:</strong> {crop['DTW']}</p>
                                     
                                     <h4>Growth Stages:</h4>
                                     {crop['Growth Stage'].map((stage, stageIndex) => (
